@@ -71,7 +71,7 @@ test.describe('Checkout - Saucedemo', () => {
         await expect(checkoutPage.errorContainer).toContainText('Error: Postal Code is required');
     });
 
-    test.skip("EVIDENCIA - FALLA INTENCIONAL :: Postal Code requerido", async ({ page }) => {
+    test("EVIDENCIA - FALLA INTENCIONAL :: Postal Code requerido", async ({ page }) => {
         // NOTA: este test falla intencionalmente para evidenciar screenshot/video configurados "only-on-failure".
 
         const checkoutPage = new CheckoutPage(page);
