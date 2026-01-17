@@ -44,6 +44,54 @@ playwright.config.js
 
 ---
 
+
+
+## 📌 Notas importantes
+
+- Se configuró:
+  - `baseURL` para simplificar navegación.
+  - Ejecución `headless`.
+  - **Screenshot solo en fallos**.
+  - **Video solo en fallos**.
+- Las carpetas `node_modules/`, `test-results/` y `playwright-report/` están excluidas del repositorio mediante `.gitignore`.
+- La URL del entorno de pruebas es:
+```bash
+https://www.saucedemo.com/
+```
+
+---
+
+## 🧪 Casos cubiertos
+
+- Login fallido (credenciales inválidas)
+- Login exitoso (credenciales válidas)
+- Agregar productos al carrito y validación de items
+- Checkout exitoso (finalizar compra)
+- Checkout negativo (Postal Code requerido)
+
+---
+
+## 🎬 Evidencias (caso que falla a propósito)
+
+Se incluyó un caso que **falla intencionalmente** para evidenciar en el reporte HTML la generación de:
+- Screenshot (solo en fallos)
+- Video (solo en fallos)
+
+Esto permite visualizar claramente tests `Pass` y `Fail` junto con sus evidencias.
+
+**Ubicación:**
+- `tests/checkout.spec.js` (test marcado como falla intencional)
+
+**Ejemplo de implementación del fallo intencional:**
+- Se fuerza un assert con un texto incorrecto en el mensaje de error del checkout:
+  - String correcto: `Error: Postal Code is required`
+  - String usado para fallar: `Test que falla a proposito`
+ <img width="1022" height="211" alt="image" src="https://github.com/user-attachments/assets/fb5c0595-e133-41d6-8ba5-c564779d3fc2" />
+
+> Nota: **Este fallo no corresponde a un defecto del sistema bajo prueba.**
+
+---
+
 ## ⚙️ Instalación
 
 1️⃣ Clonar el repositorio:
@@ -74,8 +122,7 @@ Este proyecto soporta credenciales por variables de entorno para evitar “hardc
 1️⃣ Copia el archivo `.env.example` y renómbralo a `.env`
 
 ```bash
-# Windows (PowerShell)
-copy .env.example .env
+De ".env.example" renombrarlo a ".env"
 ```
 
 2️⃣ Edita el `.env` si lo deseas:
@@ -124,52 +171,6 @@ npx playwright show-report
 
 El reporte mostrará el detalle de ejecución por test y por navegador.  
 Si un test falla, se adjuntan evidencias (screenshots / video) según configuración.
-
----
-
-## 📌 Notas importantes
-
-- Se configuró:
-  - `baseURL` para simplificar navegación.
-  - Ejecución `headless`.
-  - **Screenshot solo en fallos**.
-  - **Video solo en fallos**.
-- Las carpetas `node_modules/`, `test-results/` y `playwright-report/` están excluidas del repositorio mediante `.gitignore`.
-- La URL del entorno de pruebas es:
-```bash
-https://www.saucedemo.com/
-```
-
----
-
-## 🧪 Casos cubiertos
-
-- Login fallido (credenciales inválidas)
-- Login exitoso (credenciales válidas)
-- Agregar productos al carrito y validación de items
-- Checkout exitoso (finalizar compra)
-- Checkout negativo (Postal Code requerido)
-
----
-
-## 🎬 Evidencias (caso que falla a propósito)
-
-Se incluyó un caso que **falla intencionalmente** para evidenciar en el reporte HTML la generación de:
-- Screenshot (solo en fallos)
-- Video (solo en fallos)
-
-Esto permite visualizar claramente tests `Pass` y `Fail` junto con sus evidencias.
-
-**Ubicación:**
-- `tests/checkout.spec.js` (test marcado como falla intencional)
-
-**Ejemplo de implementación del fallo intencional:**
-- Se fuerza un assert con un texto incorrecto en el mensaje de error del checkout:
-  - String correcto: `Error: Postal Code is required`
-  - String usado para fallar: `Test que falla a proposito`
- <img width="1022" height="211" alt="image" src="https://github.com/user-attachments/assets/fb5c0595-e133-41d6-8ba5-c564779d3fc2" />
-
-> Nota: **Este fallo no corresponde a un defecto del sistema bajo prueba.**
 
 ---
 
